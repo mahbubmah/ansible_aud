@@ -1,0 +1,9 @@
+ip a|grep inet
+pwd
+
+
+ip grep theke ip nie oi ip kon class er seita bahir korte hobe and 
+
+result set on html.
+class higlighlight
+host ip class column.

@@ -1,0 +1,44 @@
+
+PLAY [all] ******************************************************************************************************************************************
+
+TASK [Gathering Facts] ******************************************************************************************************************************
+ok: [local]
+ok: [awsnode2]
+fatal: [awsnode1jump]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ssh: connect to host 172.31.24.5 port 22: No route to host\r\n", "unreachable": true}
+fatal: [private4122]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ssh: connect to host 172.31.24.5 port 22: No route to host\r\nssh_exchange_identification: Connection closed by remote host\r\n", "unreachable": true}
+fatal: [private458]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ssh: connect to host 172.31.24.5 port 22: No route to host\r\nssh_exchange_identification: Connection closed by remote host\r\n", "unreachable": true}
+
+TASK [ping] *****************************************************************************************************************************************
+ok: [awsnode2]
+ok: [local]
+
+TASK [Test command] *********************************************************************************************************************************
+changed: [awsnode2]
+changed: [local]
+
+TASK [debug] ****************************************************************************************************************************************
+ok: [awsnode2] => {
+    "msg": [
+        "    inet 127.0.0.1/8 scope host lo",
+        "    inet6 ::1/128 scope host ",
+        "    inet 172.31.30.89/20 brd 172.31.31.255 scope global eth0",
+        "    inet6 fe80::4dc:ffff:feeb:a6c8/64 scope link "
+    ]
+}
+ok: [local] => {
+    "msg": [
+        "    inet 127.0.0.1/8 scope host lo",
+        "    inet6 ::1/128 scope host ",
+        "    inet 172.31.19.219/20 brd 172.31.31.255 scope global eth0",
+        "    inet6 fe80::4ed:20ff:fe5c:a3b8/64 scope link "
+    ]
+}
+        to retry, use: --limit @/home/ubuntu/all.retry
+
+PLAY RECAP ******************************************************************************************************************************************
+awsnode1jump               : ok=0    changed=0    unreachable=1    failed=0
+awsnode2                   : ok=4    changed=1    unreachable=0    failed=0
+local                      : ok=4    changed=1    unreachable=0    failed=0
+private4122                : ok=0    changed=0    unreachable=1    failed=0
+private458                 : ok=0    changed=0    unreachable=1    failed=0
+
