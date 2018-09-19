@@ -11,7 +11,7 @@ def index():
 	res_data={}
 	res_data['FirstRunTime']=first_cmd_run_time_str
 	res_data['log']=data
-	res_data['pb_list']=get_playbook_list('./playbook')
+	res_data['pb_list']=get_playbook_list('./')
 
 	# if session.get('msg') == True:
 	# 	res_data['sess_msg']=session['msg']
