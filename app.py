@@ -13,9 +13,13 @@ def index():
 	res_data['log']=data
 	res_data['pb_list']=get_playbook_list('./playbook')
 
+	# if session.get('msg') == True:
+	# 	res_data['sess_msg']=session['msg']
+	# else:
+	# 	res_data['sess_msg']
 
-	res_data['sess_msg']=session['msg']
-	session['msg']=''
+	# session['msg']=''
+
 	return render_template('ansible_log.html', data=res_data)
 
 @app.route("/run_playbook", methods=['POST'])

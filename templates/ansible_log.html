@@ -20,7 +20,11 @@
 			<div class="col-lg-9" style="font-weight: bold;margin-left: -15px;">
 				<!-- Log session start from Fri Aug 13 16:13:06 AEST 2018 -->
 				<div style="float: left;">Log session start time {{data.FirstRunTime}}</div>
-				<div style="float: right;color: green;">{{data.sess_msg}}</div>
+				<div style="float: right;color: green;">
+					{% if session['msg'] != None%}
+						{{session.pop('msg','')}}
+					{% endif %}
+				</div>
 				
 			</div>
 			<div class="col-lg-3" style="text-align: right;">
