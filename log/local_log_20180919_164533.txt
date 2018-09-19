@@ -29,7 +29,15 @@ ok: [local] => {
     "msg": [
         "    inet 127.0.0.1/8 scope host lo",
         "    inet6 ::1/128 scope host ",
-        "    inet 172.31.19.219/20 brd 172.31.31.255 scope global eth0",
+        "    inet 10.31.19.219/20 brd 172.31.31.255 scope global eth0",
+        "    inet6 fe80::4ed:20ff:fe5c:a3b8/64 scope link "
+    ]
+}
+ok: [awsrootnode] => {
+    "msg": [
+        "    inet 127.0.0.1/8 scope host lo",
+        "    inet6 ::1/128 scope host ",
+        "    inet 192.168.19.219/20 brd 172.31.31.255 scope global eth0",
         "    inet6 fe80::4ed:20ff:fe5c:a3b8/64 scope link "
     ]
 }

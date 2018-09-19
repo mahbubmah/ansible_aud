@@ -1,5 +1,5 @@
 - hosts:
-    - all
+    - private
   tasks:
     - action: ping
     - name: Test command
