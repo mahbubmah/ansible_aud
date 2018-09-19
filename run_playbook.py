@@ -7,7 +7,8 @@ import datetime
 
 
 def run_ansible_playbook(playbook_name):
-	# return 'playbook '+playbook_name+' run successfully'	
+	# return 'playbook '+playbook_name+' run successfully'
+	subprocess.call(shlex.split('chmod +x test_cmd.sh'))	
 	cmd="ansible-playbook "+playbook_name
 	pipe = subprocess.Popen(["ansible-playbook",playbook_name], stdout=subprocess.PIPE, bufsize=10**8)
 

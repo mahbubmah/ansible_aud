@@ -1,5 +1,5 @@
 - hosts:
-    - local
+    - loc
   tasks:
     - action: ping
     - name: Test command
