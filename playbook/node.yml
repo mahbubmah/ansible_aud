@@ -3,6 +3,6 @@
   tasks:
     - action: ping
     - name: Test command
-      script: test.sh
+      script: test_cmd.sh
       register: st
     - debug: msg="{{st.stdout_lines}}"

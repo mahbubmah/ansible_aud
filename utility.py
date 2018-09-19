@@ -32,31 +32,38 @@ def get_ip_info_from_log(log_dir):
 	lf_list=gb.glob(log_dir+os.sep+'*_log_*.txt')
 	lf_list.sort(key=lambda x:os.path.getmtime(x),reverse=True)
 
-	last_cmd_run_time_str=''
-	last_log_time_recorded=0
+	first_cmd_run_time_str=''
 	for log_path in lf_list:
 		log_file_name=os.path.splitext(os.path.basename(log_path))[0]
 		lm_under_char_pos=[pos for pos, char in enumerate(log_file_name) if char=='_']
 		lm_time_str=log_file_name[lm_under_char_pos[-2]+1:lm_under_char_pos[-2]+16]
 		lm_time=dt.datetime.strptime(lm_time_str,"%Y%m%d_%H%M%S")
 
-		if last_log_time_recorded==0:
-			last_cmd_run_time_str=lm_time.strftime("%Y%m%d_%H%M%S")
-			last_log_time_recorded=1
+		first_cmd_run_time_str=lm_time.strftime("%a %b %d %H:%M:%S %Z %Y")
 
 		log_result=read_anisble_log(log_path)
 		
 		for i in log_result:
 			log={}
-			log['time']=lm_time.strftime("%Y%m%d_%H%M%S") #impletemnt correct time string format
+			log['time']=lm_time.strftime("%b %d, %Y %H:%M:%S") #impletemnt correct time string format
 			log['ip']=i[0]
 			log['class']=i[1][0]
 			log['class_color']=i[1][1]
 			log['msg']="IP address "+i[0]+" belongs to Class "+i[1][0]
 			ret_data.append(log)
 	
-	return (last_cmd_run_time_str,ret_data)
+	return (first_cmd_run_time_str,ret_data)
 
+def get_playbook_list(playbook_path):
+	pb_list=gb.glob(playbook_path+os.sep+'*.yml')
+	pb_list.sort(key=lambda x:x)
+
+	ret_pb_list=[]
+	for pb in pb_list:
+		pb_item=[os.path.splitext(os.path.basename(pb))[0],os.path.basename(pb)]
+		ret_pb_list.append(pb_item)
+
+	return ret_pb_list
 
 
 if __name__ == "__main__":
@@ -64,8 +71,8 @@ if __name__ == "__main__":
 	# # print(s_ip[10])
 	# ipClass = findClass(s_ip)
 	# print("Given IP address belongs to Class "+ipClass)
+	print(get_playbook_list('./playbook'))
 
-
-	log_path='./log'    
-	data=get_ip_info_from_log(log_path)
-	print(data)
+	# log_path='./log'    
+	# data=get_ip_info_from_log(log_path)
+	# print(data)
